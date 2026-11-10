@@ -301,6 +301,23 @@
     document.documentElement.style.overflow = open ? "hidden" : "";
   });
 
+  /* ---------- top bar: glass once scrolled, hides on the way down, returns on the way up ---------- */
+  const bar = $(".nav");
+  if (bar) {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      bar.classList.toggle("solid", y > 40);
+      const menuOpen = drawer && drawer.classList.contains("open");
+      if (menuOpen || y < 120 || y < last - 4) bar.classList.remove("hide");
+      else if (y > last + 4) bar.classList.add("hide");
+      last = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    bar.addEventListener("focusin", () => bar.classList.remove("hide"));
+    onScroll();
+  }
+
   /* ---------- smooth scrolling ---------- */
   let lenis = null;
   if (window.Lenis && !reduce) {
