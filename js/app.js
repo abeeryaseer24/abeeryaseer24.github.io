@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------------
    Builds every page from js/data.js, then adds the motion:
    smooth scrolling, text and scroll animations,
-   tabs, tilting cards and page wipes.
+   tabs, tilting cards and the page transition.
 ------------------------------------------------------------------- */
 (() => {
   "use strict";
@@ -12,7 +12,6 @@
   const hasGsap = !!window.gsap && !reduce;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-  const seen = (() => { try { return sessionStorage.getItem("seen"); } catch (e) { return "1"; } })();
 
   /* ---------- icons ---------- */
   const ICONS = {
@@ -285,11 +284,10 @@
   /* ---------- render ---------- */
   document.body.classList.add("site");
   root.innerHTML =
-    `<div class="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>` +
+    `<div class="veil" aria-hidden="true"><div class="veil-panel"><span class="veil-label"></span><span class="veil-line"></span></div></div>` +
     nav() +
     `<main id="main">${(PAGES[page] || PAGES.lost)()}${["home", "contact", "lost"].includes(page) ? "" : explore()}</main>` +
     foot();
-  try { sessionStorage.setItem("seen", "1"); } catch (e) { /* storage blocked: fine */ }
 
   /* ---------- menu (small screens) ---------- */
   const menuBtn = $(".menu-btn"), drawer = $("#drawer");
@@ -437,31 +435,61 @@
     });
   }
 
-  /* ---------- page wipes ---------- */
-  const bars = $$(".wipe i");
-  function wipeOut(then) {
-    if (!hasGsap) return then();
-    window.gsap.set(bars, { scaleY: 1, transformOrigin: "top" });
-    window.gsap.to(bars, { scaleY: 0, duration: 0.7, ease: "expo.inOut", stagger: 0.06, onComplete: then });
-  }
+  /* ---------- page transition ---------- */
+  const veil = $(".veil"), vPanel = $(".veil-panel"), vLabel = $(".veil-label"), vLine = $(".veil-line");
+  const store = {
+    get: () => { try { const v = sessionStorage.getItem("veil"); sessionStorage.removeItem("veil"); return v; } catch (e) { return null; } },
+    set: (v) => { try { sessionStorage.setItem("veil", v); } catch (e) { /* storage blocked: the page still opens */ } }
+  };
+  const titleFor = (href) => {
+    const file = href.split("#")[0].split("/").pop();
+    const hit = S.pages.find((p) => p.file === file);
+    return hit ? hit.title : "Home";
+  };
+  let leaving = false;
   if (hasGsap) {
+    const g = window.gsap;
+    const below = () => window.innerHeight * 1.16;
     document.addEventListener("click", (e) => {
       const a = e.target.closest("a[href]");
-      if (!a || a.target === "_blank" || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      if (!a || a.target === "_blank" || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
       const href = a.getAttribute("href");
       if (!/\.html(#.*)?$/.test(href) || /^https?:/.test(href)) return;
       e.preventDefault();
-      window.gsap.set(bars, { scaleY: 0, transformOrigin: "bottom" });
-      window.gsap.to(bars, { scaleY: 1, duration: 0.5, ease: "expo.inOut", stagger: 0.05, onComplete: () => { location.href = href; } });
+      if (leaving) return;
+      leaving = true;
+      const name = titleFor(href);
+      vLabel.textContent = name;
+      store.set(name);
+      g.set(vPanel, { y: below() });
+      g.set(vLabel, { opacity: 0, y: 12 });
+      g.set(vLine, { scaleX: 0 });
+      veil.classList.add("on");
+      g.timeline({ onComplete: () => { location.href = href; } })
+        .to(vPanel, { y: 0, duration: 0.75, ease: "expo.inOut" })
+        .to(vLabel, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.4)
+        .to(vLine, { scaleX: 1, duration: 0.45, ease: "power2.out" }, 0.45);
     });
-    window.addEventListener("pageshow", (e) => { if (e.persisted) window.gsap.set(bars, { scaleY: 0 }); });
+    window.addEventListener("pageshow", (e) => {
+      if (e.persisted) { leaving = false; veil.classList.remove("on"); }
+    });
   }
 
   /* ---------- go ---------- */
   function start() { intro(); reveals(); }
-  if (seen && hasGsap) {
-    wipeOut(() => {});
-    setTimeout(start, 250);
+  const arrivedAs = hasGsap ? store.get() : null;
+  if (arrivedAs) {
+    const g = window.gsap;
+    vLabel.textContent = arrivedAs;
+    g.set(vPanel, { y: 0 });
+    g.set(vLabel, { opacity: 1, y: 0 });
+    g.set(vLine, { scaleX: 1 });
+    veil.classList.add("on");
+    g.timeline({ delay: 0.12, onComplete: () => veil.classList.remove("on") })
+      .to(vLabel, { opacity: 0, y: -10, duration: 0.25, ease: "power2.in" })
+      .to(vLine, { scaleX: 0, duration: 0.25, ease: "power2.in" }, 0)
+      .to(vPanel, { y: -window.innerHeight - 4, duration: 0.8, ease: "expo.inOut" }, 0.2)
+      .call(start, null, 0.55);
   } else {
     start();
   }

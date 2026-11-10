@@ -76,9 +76,13 @@ body.site:not([data-page="home"]) #scene { opacity: 0.38; }
 .math { font-family: var(--math); font-style: italic; color: var(--volt); }
 .line { overflow: hidden; padding-bottom: 0.14em; margin-bottom: -0.14em; }
 
-/* ---------- page wipe ---------- */
-.wipe { position: fixed; inset: 0; z-index: 90; pointer-events: none; display: grid; grid-template-columns: repeat(5, 1fr); }
-.wipe i { background: linear-gradient(180deg, var(--amber), var(--signal)); transform: scaleY(0); transform-origin: bottom; }
+/* ---------- page transition: a dark panel with a curved edge rises over the page, names where you are going, then lifts away ---------- */
+.veil { position: fixed; inset: 0; z-index: 90; pointer-events: none; overflow: hidden; visibility: hidden; }
+.veil.on { visibility: visible; }
+.veil-panel { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 14px; background: #170b09; transform: translateY(116vh); will-change: transform; }
+.veil-panel::before { content: ""; position: absolute; left: -2%; right: -2%; top: -14vh; height: 14vh; background: #170b09; border-radius: 50% 50% 0 0 / 100% 100% 0 0; box-shadow: 0 -2px 0 rgba(255, 210, 63, 0.55); }
+.veil-label { font-family: var(--display); font-weight: 600; font-size: clamp(1.1rem, 2.2vw, 1.5rem); letter-spacing: -0.01em; color: var(--paper); opacity: 0; }
+.veil-line { width: 56px; height: 2px; border-radius: 2px; background: var(--volt); transform: scaleX(0); }
 
 /* ---------- nav ---------- */
 .nav { position: fixed; top: 14px; left: 50%; transform: translate(-50%, var(--ny, 0)); transition: transform 0.45s var(--ease), background 0.3s, border-color 0.3s; z-index: 50; width: min(1180px, 100% - 24px); border-radius: 999px; padding: 8px 10px 8px 20px; display: flex; align-items: center; gap: 12px; }
