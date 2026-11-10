@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------------
    Builds every page from js/data.js, then adds the motion:
    smooth scrolling, text and scroll animations,
-   tabs, tilting cards, the "keep exploring" slider and page wipes.
+   tabs, tilting cards and page wipes.
 ------------------------------------------------------------------- */
 (() => {
   "use strict";
@@ -58,14 +58,14 @@
   const explore = () => `
     <section class="explore" aria-labelledby="explore-h"><div class="wrap">
       <h2 class="h2" id="explore-h" data-reveal>Keep exploring</h2>
-      <div class="swiper" data-reveal><div class="swiper-wrapper">
+      <div class="home-grid">
         ${S.pages.filter((p) => p.id !== page).map((p) => `
-          <div class="swiper-slide"><a class="card glass next-card" href="${p.file}">
-            <h3 class="h2">${p.title}</h3>
+          <a class="card glass next-card" href="${p.file}" data-reveal>
+            <h3 class="h3">${p.title}</h3>
             <p class="muted">${p.blurb}</p>
-            <span class="open">Open ${p.title.toLowerCase()} ${ic("arrow")}</span>
-          </a></div>`).join("")}
-      </div></div>
+            <span class="open">View ${p.title.toLowerCase()} ${ic("arrow")}</span>
+          </a>`).join("")}
+      </div>
     </div></section>`;
 
   const foot = () => `
@@ -106,7 +106,7 @@
         <div class="home-grid">
           ${S.pages.filter((p) => p.id !== "contact").map((p) => `
             <a class="card glass next-card" href="${p.file}" data-reveal>
-              <h3 class="h2">${p.title}</h3>
+              <h3 class="h3">${p.title}</h3>
               <p class="muted">${p.blurb}</p>
               <span class="open">View ${p.title.toLowerCase()} ${ic("arrow")}</span>
             </a>`).join("")}
@@ -200,7 +200,7 @@
           ${l.items.map((x) => `
             <${x.href ? `a href="${x.href}"` : "article"} class="card glass block" data-reveal>
               <span class="tag">${x.tag}</span>
-              <h3 class="h3 mt-1 mb-2" style="font-size:1.25rem">${x.title}</h3>
+              <h3 class="h3 mt-1 mb-2" style="font-size:1.08rem">${x.title}</h3>
               <p class="muted">${x.text}</p>
               ${x.href ? `<span class="next-card"><span class="open mt-3">See the project ${ic("arrow")}</span></span>` : ""}
             </${x.href ? "a" : "article"}>`).join("")}
@@ -213,7 +213,7 @@
       <section class="sec"><div class="wrap">
         <article class="card glass" data-reveal style="padding:clamp(24px,4vw,48px)">
           <span class="tag">${f.kicker}</span>
-          <h2 class="display mt-2" style="font-size:clamp(1.8rem,5vw,3.6rem)">${f.title}</h2>
+          <h2 class="display mt-2" style="font-size:clamp(1.4rem,3vw,2.1rem)">${f.title}</h2>
           <p class="lead mt-5" style="color:var(--paper)">${f.summary}</p>
           <div class="hero-cta">
             <a class="btn" href="${f.live}" ${ext}>Open the live app ${ic("out")}</a>
@@ -251,7 +251,7 @@
           <img src="${S.photo}" alt="Portrait of ${S.name}" width="720" height="900">
         </figure>
         <div>
-          <div class="grid gap-4" data-reveal>${S.bio.map((p, i) => `<p${i ? ' class="muted"' : ' style="font-size:1.15rem"'}>${p}</p>`).join("")}</div>
+          <div class="grid gap-4" data-reveal>${S.bio.map((p, i) => `<p${i ? ' class="muted"' : ""}>${p}</p>`).join("")}</div>
           <dl class="card glass details mt-8" data-reveal>${S.details.map((d) => `<div><dt>${d.k}</dt><dd>${d.v}</dd></div>`).join("")}</dl>
           <h2 class="h2 mt-10 mb-5" data-reveal>Off the clock</h2>
           <div class="flex flex-wrap gap-3">${S.hobbies.map((h) => `<div class="glass hobby" data-reveal><span aria-hidden="true">${h.icon}</span>${h.name}</div>`).join("")}</div>
@@ -419,11 +419,6 @@
       s.addEventListener("pointerenter", () => window.SCENE && window.SCENE.boost(1));
       s.addEventListener("pointerleave", () => window.SCENE && window.SCENE.boost(0));
     });
-  }
-
-  /* ---------- keep exploring slider ---------- */
-  if (window.Swiper && $(".explore .swiper")) {
-    new window.Swiper(".explore .swiper", { slidesPerView: "auto", spaceBetween: 16, grabCursor: true, keyboard: { enabled: true, onlyInViewport: true } });
   }
 
   /* ---------- page wipes ---------- */

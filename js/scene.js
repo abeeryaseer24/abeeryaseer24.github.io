@@ -24,7 +24,7 @@
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2));
 
   const scene = new T.Scene();
-  scene.fog = new T.Fog(0x5a0803, 14, 44);
+  scene.fog = new T.Fog(0x0b0605, 14, 44);
   const cam = new T.PerspectiveCamera(42, 1, 0.1, 120);
 
   scene.add(new T.AmbientLight(0xffe2b8, 0.7));
@@ -94,7 +94,7 @@
   // chips sitting on the board
   const chipMat = new T.MeshStandardMaterial({ color: 0x1c0503, metalness: 0.5, roughness: 0.45 });
   const edgeMat = new T.LineBasicMaterial({ color: 0xffd23f, transparent: true, opacity: 0.75 });
-  for (let i = 0; i < (small ? 8 : 16); i++) {
+  for (let i = 0; i < (home ? (small ? 8 : 16) : 0); i++) {
     const w = RI(2, 4), dpt = RI(1, 3);
     let x = RI(-HALF + 4, HALF - 4), z = RI(-HALF + 4, 6);
     if (Math.hypot(x, z) < 6) x += x < 0 ? -7 : 7;
@@ -154,13 +154,13 @@
     return tex;
   }
   function buildEquations() {
-    const n = small ? 7 : EQS.length;
+    const n = home ? (small ? 6 : EQS.length) : 6;
     for (let i = 0; i < n; i++) {
       const tex = eqTexture(EQS[i]);
       const sp = new T.Sprite(new T.SpriteMaterial({ map: tex, transparent: true, opacity: R(0.45, 0.85), depthWrite: false }));
       const h = R(0.9, 1.5);
       sp.scale.set(h * tex.userData.ratio, h, 1);
-      sp.position.set(R(-15, 15), R(2.2, 8), R(-20, 2));
+      sp.position.set(R(-15, 15), R(2.2, 8), R(-22, -4));
       sp.userData = { y: sp.position.y, ph: R(0, 6.28), sp: R(0.15, 0.4) };
       scene.add(sp);
       eqs.push(sp);
