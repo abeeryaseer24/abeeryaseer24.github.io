@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------
    Builds every page from js/data.js, then adds the motion:
-   start-lights intro, smooth scrolling, text and scroll animations,
+   smooth scrolling, text and scroll animations,
    tabs, tilting cards, the "keep exploring" slider and page wipes.
 ------------------------------------------------------------------- */
 (() => {
@@ -90,31 +90,30 @@
   /* ---------- pages ---------- */
   const PAGES = {
     home: () => `
-      <section class="hero"><div class="wrap">
+      <section class="hero"><div class="wrap"><div class="hero-in">
         <p class="hero-role" data-hero>${S.role}</p>
-        <h1 class="display hero-name" data-split>${S.name.split(" ").map((w) => `<span>${w}</span>`).join("")}</h1>
-        <p class="lead" data-hero>${S.tagline}</p>
+        <h1 class="display hero-name" data-split>${S.name}</h1>
+        <p class="hero-line" data-hero>${S.tagline}</p>
         <div class="hero-cta" data-hero>
-          <a class="btn" href="#grid">Go to the starting grid</a>
+          <a class="btn" href="#explore">Explore my work</a>
           <a class="btn ghost" href="${S.links.github}" ${ext}>${ic("github")} GitHub</a>
         </div>
-      </div>
-      <p class="hero-hint hidden md:block" data-hero>Drag anywhere to spin the car</p>
+      </div></div>
+      <p class="hero-hint hidden md:block" data-hero>Drag to rotate the car</p>
       </section>
-      <section class="grid-sec" id="grid" aria-labelledby="grid-h"><div class="wrap">
-        <h2 class="display" id="grid-h" style="font-size:clamp(2rem,6vw,4.4rem)" data-reveal>The starting grid</h2>
-        <p class="lead mt-4" data-reveal>Six pages line up. Pick the one you want to see first.</p>
-        <div class="startgrid">
-          ${S.pages.filter((p) => p.id !== "contact").map((p, i) => `
-            <a class="card glass slot" href="${p.file}" data-reveal>
-              <span class="pos">P${i + 1}</span>
+      <section class="home-sec" id="explore" aria-labelledby="explore-h"><div class="wrap">
+        <h2 class="h2" id="explore-h" data-reveal>Explore</h2>
+        <div class="home-grid">
+          ${S.pages.filter((p) => p.id !== "contact").map((p) => `
+            <a class="card glass next-card" href="${p.file}" data-reveal>
               <h3 class="h2">${p.title}</h3>
               <p class="muted">${p.blurb}</p>
+              <span class="open">View ${p.title.toLowerCase()} ${ic("arrow")}</span>
             </a>`).join("")}
         </div>
-        <a class="pit glass" href="contact.html" data-reveal>
-          <span><b class="h3">Pit lane</b><br><span class="muted">${S.pages.find((p) => p.id === "contact").blurb}</span></span>
-          <span class="btn">Contact me</span>
+        <a class="cta-band glass" href="contact.html" data-reveal>
+          <span><b class="h3">Let's work together</b><br><span class="muted">${S.pages.find((p) => p.id === "contact").blurb}</span></span>
+          <span class="btn">Get in touch</span>
         </a>
       </div></section>`,
 
@@ -278,17 +277,15 @@
 
     lost: () => `
       <section class="hero"><div class="wrap">
-        <h1 class="display hero-name" data-split>Off track</h1>
-        <p class="lead" data-hero>This page does not exist. Head back to the grid and pick another.</p>
+        <h1 class="display hero-name" data-split>Page not found</h1>
+        <p class="hero-line" data-hero>This page does not exist. The home page has links to everything.</p>
         <div class="hero-cta" data-hero><a class="btn" href="index.html">Back to home</a></div>
       </div></section>`
   };
 
   /* ---------- render ---------- */
   document.body.classList.add("site");
-  const showLights = page === "home" && !seen && !reduce;
   root.innerHTML =
-    (showLights ? `<div class="loader" aria-hidden="true"><div class="lights"><i></i><i></i><i></i><i></i><i></i></div><p>Lights out and away we go</p></div>` : "") +
     `<div class="wipe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>` +
     nav() +
     `<main id="main">${(PAGES[page] || PAGES.lost)()}${["home", "contact", "lost"].includes(page) ? "" : explore()}</main>` +
@@ -417,8 +414,8 @@
         card.style.setProperty("--ry", "0deg");
       });
     });
-    // hovering a grid slot revs the car
-    $$(".slot").forEach((s) => {
+    // hovering a home card speeds up the current on the board
+    $$(".home-grid .card").forEach((s) => {
       s.addEventListener("pointerenter", () => window.SCENE && window.SCENE.boost(1));
       s.addEventListener("pointerleave", () => window.SCENE && window.SCENE.boost(0));
     });
@@ -451,16 +448,7 @@
 
   /* ---------- go ---------- */
   function start() { intro(); reveals(); }
-  if (showLights) {
-    const lights = $$(".lights i"), loader = $(".loader");
-    lights.forEach((l, i) => setTimeout(() => l.classList.add("on"), 250 + i * 260));
-    setTimeout(() => {
-      lights.forEach((l) => l.classList.remove("on"));
-      const done = () => { loader.remove(); };
-      if (window.gsap) window.gsap.to(loader, { yPercent: -100, duration: 0.8, ease: "expo.inOut", delay: 0.15, onComplete: done, onStart: start });
-      else done();
-    }, 250 + 5 * 260 + 550);
-  } else if (seen && hasGsap) {
+  if (seen && hasGsap) {
     wipeOut(() => {});
     setTimeout(start, 250);
   } else {

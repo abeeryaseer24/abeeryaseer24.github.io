@@ -4,8 +4,8 @@
 ------------------------------------------------------------------- */
 window.SITE = {
   name: "Talha Yaseer Abeer",
-  role: "Electrical and electronic engineering student at IUT",
-  tagline: "Where electrical engineering meets machine learning.",
+  role: "Electrical and Electronic Engineering, IUT",
+  tagline: "Engineer, builder and organizer. I turn ideas into systems that work, from circuits and robots to software that learns.",
   email: "talha.iut.eee@gmail.com",
 
   links: {
@@ -17,24 +17,24 @@ window.SITE = {
   // The pages, in the order they appear on the home grid.
   // "blurb" is the one or two lines shown wherever a page is linked.
   pages: [
-    { id: "education", file: "education.html", title: "Education", blurb: "My current courses at IUT with what each one taught me, and the school record that came before." },
-    { id: "expertise", file: "expertise.html", title: "Expertise", blurb: "Industrial tools, software stacks and leadership skills, sorted into tabs." },
-    { id: "achievements", file: "achievements.html", title: "Achievements", blurb: "Olympiad wins, two national science fests, and the students I have mentored." },
-    { id: "experience", file: "experience.html", title: "Experience", blurb: "What I have built, led and taught in real life, from robots to a self-running ML app." },
-    { id: "projects", file: "projects.html", title: "Projects", blurb: "The F1 Podium Predictor in full detail, plus the robots I have built." },
-    { id: "about", file: "about.html", title: "About me", blurb: "The person behind the work: my photo, my story and my hobbies." },
-    { id: "contact", file: "contact.html", title: "Contact", blurb: "Every way to reach me, in one place." }
+    { id: "education", file: "education.html", title: "Education", blurb: "A top academic record from school to university, and the coursework shaping me as an engineer." },
+    { id: "expertise", file: "expertise.html", title: "Expertise", blurb: "The engineering tools, programming stacks and people skills I bring to a team." },
+    { id: "achievements", file: "achievements.html", title: "Achievements", blurb: "Competition results, national events delivered and students guided into leading universities." },
+    { id: "experience", file: "experience.html", title: "Experience", blurb: "Hands-on work across engineering projects, club leadership and teaching." },
+    { id: "projects", file: "projects.html", title: "Projects", blurb: "A machine learning app that runs itself, and robots built from the ground up." },
+    { id: "about", file: "about.html", title: "About me", blurb: "My story, what drives me and how I spend my time away from work." },
+    { id: "contact", file: "contact.html", title: "Contact", blurb: "Open to internships, research and collaboration." }
   ],
 
   // One-line intro under the big title of each page.
   intros: {
-    education: "Where I study now, and the road that got me there.",
-    expertise: "The tools I work with and the skills I have picked up along the way.",
-    achievements: "Competitions won, events run and students helped.",
-    experience: "Things I have actually done: built, led and taught.",
-    projects: "Ideas I turned into things that work.",
-    about: "A little about who I am outside the grades and the code.",
-    contact: "Internships, research, collaboration or just a hello. Pick any channel."
+    education: "Consistent top results from school through university, now focused on electrical and electronic engineering.",
+    expertise: "A toolkit that spans circuit design, programming, machine learning and leading people.",
+    achievements: "Recognition earned in competitions, on stage and through the success of my students.",
+    experience: "Practical work that taught me to engineer, to lead and to teach.",
+    projects: "Working systems I designed and built, in software and in hardware.",
+    about: "Engineer by training, builder by habit, novelist on the side.",
+    contact: "Open to internships, research and collaboration. Choose whichever channel suits you."
   },
 
   // ---------- Education ----------
@@ -122,7 +122,7 @@ window.SITE = {
   // ---------- Experience ----------
   experience: [
     {
-      lane: "Building",
+      lane: "Engineering",
       items: [
         { title: "F1 Podium Predictor", tag: "Machine learning web app", text: "Designed, trained and shipped an app that predicts every Formula 1 race, scores itself and retrains with no one in the loop.", href: "projects.html" },
         { title: "Line follower robot", tag: "University build", text: "Built an autonomous robot that follows a line using sensors." },
@@ -130,7 +130,7 @@ window.SITE = {
       ]
     },
     {
-      lane: "Leading",
+      lane: "Leadership",
       items: [
         { title: "Vice President and Head of Content Writing", tag: "Rajuk College Science Club, former", text: "Led the club, ran two national science fests and two intra-club competitions, and negotiated with 20+ sponsors." },
         { title: "Advisor", tag: "Rajuk College Science Club, current", text: "Advising the committee that runs the club today." }
