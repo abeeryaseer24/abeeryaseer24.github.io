@@ -1,7 +1,10 @@
 # Talha Yaseer Abeer, portfolio
 
-Static site for GitHub Pages. All the words live in `js/data.js`; edit that file and save.
+Static site for GitHub Pages (abeeryaseer24.github.io).
 
-- Résumé: put the PDF at `assets/Talha-Yaseer-Abeer-Resume.pdf`, then set `ready: true` in `js/data.js`.
-- Course cards: add a `result` line to any course in `js/data.js`.
-- Preview locally: open `index.html` in a browser.
+- All the words live in `js/data.js`. Edit that file and save.
+- Course results: fill in `result: ""` for any course in `js/data.js`, e.g. `result: "A+"`.
+- Photo: replace `assets/photo.jpg` (portrait, 4:5, e.g. 720x900 or larger).
+- Colours: top of `css/styles.css`.
+- 3D background (circuit board, equations, F1 car): `js/scene.js`.
+- Preview locally: open `index.html` in a browser (needs internet for the libraries).
