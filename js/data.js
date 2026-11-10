@@ -47,10 +47,10 @@ window.SITE = {
   },
   // Add a result to any course when ready, e.g. result: "A+"
   courses: [
-    { name: "Basic Power Systems", eq: "P = VI cos φ", learnt: "How electricity is generated, transmitted and distributed.", result: "" },
-    { name: "Digital Electronics", eq: "Y = A ⊕ B", learnt: "Logic gates and the combinational and sequential circuits built from them.", result: "" },
-    { name: "Linear Algebra", eq: "det(A − λI) = 0", learnt: "Matrices, vector spaces and eigenvalues, the maths behind signals and machine learning.", result: "" },
-    { name: "C Programming", eq: "int *p = &x;", learnt: "Structured programming, pointers and solving problems in code.", result: "" }
+    { name: "Basic Power Systems", learnt: "How electricity is generated, transmitted and distributed.", result: "" },
+    { name: "Digital Electronics", learnt: "Logic gates and the combinational and sequential circuits built from them.", result: "" },
+    { name: "Linear Algebra", learnt: "Matrices, vector spaces and eigenvalues, the maths behind signals and machine learning.", result: "" },
+    { name: "C Programming", learnt: "Structured programming, pointers and solving problems in code.", result: "" }
   ],
   background: [
     { when: "Admission", title: "Admitted to IUT", score: "EEE", unit: "Department", note: "Earned a seat in Electrical and Electronic Engineering at the Islamic University of Technology." },

@@ -135,7 +135,6 @@
           <div class="grid sm:grid-cols-2 gap-5">
             ${S.courses.map((k) => `
               <article class="card glass course" data-item>
-                <span class="math">${k.eq}</span>
                 <h3 class="h3">${k.name}</h3>
                 <p class="muted mt-2">${k.learnt}</p>
                 ${k.result ? `<span class="result">Result: ${k.result}</span>` : ""}
