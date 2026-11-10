@@ -21,7 +21,7 @@ window.SITE = {
     { id: "expertise", file: "expertise.html", title: "Expertise", blurb: "The engineering tools, programming stacks and people skills I bring to a team." },
     { id: "achievements", file: "achievements.html", title: "Achievements", blurb: "Competition results, national events delivered and students guided into leading universities." },
     { id: "experience", file: "experience.html", title: "Experience", blurb: "Hands-on work across engineering projects, club leadership and teaching." },
-    { id: "projects", file: "projects.html", title: "Projects", blurb: "A machine learning app that runs itself, and robots built from the ground up." },
+    { id: "projects", file: "projects.html", title: "Projects", blurb: "A growing collection of the things I have designed, built and shipped." },
     { id: "about", file: "about.html", title: "About me", blurb: "My story, what drives me and how I spend my time away from work." },
     { id: "contact", file: "contact.html", title: "Contact", blurb: "Open to internships, research and collaboration." }
   ],
