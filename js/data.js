@@ -99,7 +99,8 @@ window.SITE = {
   // ---------- Achievements ----------
   olympiads: [
     { result: "Winner", event: "Math Olympiad, Holy Cross College Science Fest", year: "2023" },
-    { result: "Regional round", event: "ECA Math Olympiad", year: "2023" },
+    { result: "Winner", event: "Content Writing Competition, Rajuk College", year: "Class 11" },
+    { result: "Regional round", event: "Bangladesh Math Olympiad (BDMO)", year: "2023" },
     { result: "Finalist", event: "Treasure hunt, Josephite Math Mania", year: "" }
   ],
   organizing: {
