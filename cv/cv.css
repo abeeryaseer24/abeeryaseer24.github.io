@@ -1,0 +1,49 @@
+/* Shared print styles for the resume and CV. Rendered to PDF by build.ps1. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+@page { size: A4; margin: 12mm 15mm 11mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --ink: #1b2433; --navy: #1f2d4d; --mute: #5b6577; --rule: #c9cfd9; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Inter", "Segoe UI", Arial, sans-serif; color: var(--ink); font-size: 9.6pt; line-height: 1.38; background: #fff; }
+a { color: inherit; text-decoration: none; }
+
+.page { width: 100%; }
+
+header { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; padding-bottom: 9px; border-bottom: 1.6px solid var(--navy); }
+h1 { font-size: 23pt; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; line-height: 1.1; }
+.title { font-size: 10.6pt; color: var(--navy); margin-top: 4px; }
+.contact { font-size: 8.7pt; color: var(--mute); margin-top: 5px; }
+.contact span + span::before { content: "|"; color: var(--rule); margin: 0 6px; }
+.photo { width: 30mm; height: 37.5mm; object-fit: cover; border: 1px solid var(--rule); flex: none; }
+
+section { margin-top: 10px; }
+h2 { font-size: 8.6pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); padding-bottom: 3px; border-bottom: 1px solid var(--rule); margin-bottom: 5px; }
+
+.item { margin-top: 5px; break-inside: avoid; }
+.row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.row b { font-weight: 600; }
+.row .when { color: var(--mute); white-space: nowrap; font-size: 8.9pt; }
+.sub { color: var(--mute); font-size: 8.9pt; }
+ul { margin: 2px 0 0 14px; }
+li { margin-top: 1.5px; padding-left: 2px; }
+li::marker { color: var(--navy); }
+p.plain { margin-top: 2px; }
+
+table.kv { width: 100%; border-collapse: collapse; }
+table.kv td { padding: 1.5px 0; vertical-align: top; }
+table.kv td:first-child { width: 33mm; font-weight: 600; padding-right: 8px; }
+
+/* CV runs a touch roomier than the one-page resume */
+.cv body, body.cv { font-size: 9.9pt; line-height: 1.42; }
+body.cv section { margin-top: 12px; }
+
+/* One-page resume: slightly tighter type */
+body.resume { font-size: 9pt; line-height: 1.27; }
+body.resume section { margin-top: 7px; }
+body.resume h2 { margin-bottom: 3px; }
+body.resume li { margin-top: 1px; }
+body.resume header { padding-bottom: 7px; }
+body.resume .item { margin-top: 4px; }
+body.resume h1 { font-size: 21pt; }
+.contact span { white-space: nowrap; display: inline-block; }

@@ -22,6 +22,7 @@
     arrow: ["0 0 24 24", '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/>'],
     out: ["0 0 24 24", '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M8 7h9v9"/>'],
     menu: ["0 0 24 24", '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 8h16M4 16h16"/>'],
+    doc: ["0 0 24 24", '<g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M12 11v6M9 14l3 3 3-3"/></g>'],
     close: ["0 0 24 24", '<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/>']
   };
   const ic = (n, cls = "") => `<svg class="${cls}" viewBox="${ICONS[n][0]}" aria-hidden="true" focusable="false">${ICONS[n][1]}</svg>`;
@@ -73,6 +74,21 @@
       <a class="gh-link" href="${S.links.github}" ${ext}>${ic("github")} github.com/${S.handles.github}</a>
     </div></footer>`;
 
+  const docBtns = (cls = "") => S.docs ? `
+    <div class="hero-cta ${cls}">
+      <a class="btn" href="${S.docs.resume}" ${ext}>${ic("doc")} Resume (PDF)</a>
+      <a class="btn ghost" href="${S.docs.cv}" ${ext}>${ic("doc")} Full CV (PDF)</a>
+    </div>` : "";
+
+  const links = (o) => `
+    <div class="hero-cta">
+      ${o.live ? `<a class="btn" href="${o.live}" ${ext}>Open the live app ${ic("out")}</a>` : ""}
+      ${o.paper ? `<a class="btn" href="${o.paper}" ${ext}>Read the draft (PDF) ${ic("out")}</a>` : ""}
+      ${o.repo ? `<a class="btn ghost" href="${o.repo}" ${ext}>${ic("github")} Source code</a>` : ""}
+      ${o.code ? `<a class="btn ghost" href="${o.code}" ${ext}>${ic("github")} Code and data</a>` : ""}
+      ${o.report ? `<a class="btn ghost" href="${o.report}" ${ext}>${ic("doc")} Technical report</a>` : ""}
+    </div>`;
+
   const stat = (s) => `
     <div class="card glass" data-reveal>
       <div class="big-num" data-count="${s.to}" data-dec="${s.dec || 0}" data-suf="${s.suf || ""}">${s.dec ? s.to.toFixed(s.dec) : s.to}${s.suf || ""}</div>
@@ -96,6 +112,7 @@
         <div class="hero-cta" data-hero>
           <a class="btn" href="#explore">Explore my work</a>
           <a class="btn ghost" href="${S.links.github}" ${ext}>${ic("github")} GitHub</a>
+          ${S.docs ? `<a class="btn ghost" href="${S.docs.resume}" ${ext}>${ic("doc")} Resume</a>` : ""}
         </div>
       </div></div>
       <p class="hero-hint hidden md:block" data-hero>Drag to rotate the car</p>
@@ -200,7 +217,7 @@
               <span class="tag">${x.tag}</span>
               <h3 class="h3 mt-1 mb-2" style="font-size:1.08rem">${x.title}</h3>
               <p class="muted">${x.text}</p>
-              ${x.href ? `<span class="next-card"><span class="open mt-3">See the project ${ic("arrow")}</span></span>` : ""}
+              ${x.href ? `<span class="next-card"><span class="open mt-3">${x.cta || "See the project"} ${ic("arrow")}</span></span>` : ""}
             </${x.href ? "a" : "article"}>`).join("")}
         </div>
       </div></section>`).join(""),
@@ -209,14 +226,11 @@
       const f = S.f1;
       return head() + `
       <section class="sec"><div class="wrap">
-        <article class="card glass" data-reveal style="padding:clamp(24px,4vw,48px)">
+        <article class="card glass anchor" id="${f.id}" data-reveal style="padding:clamp(24px,4vw,48px)">
           <span class="tag">${f.kicker}</span>
           <h2 class="display mt-2" style="font-size:clamp(1.4rem,3vw,2.1rem)">${f.title}</h2>
           <p class="lead mt-5" style="color:var(--paper)">${f.summary}</p>
-          <div class="hero-cta">
-            <a class="btn" href="${f.live}" ${ext}>Open the live app ${ic("out")}</a>
-            <a class="btn ghost" href="${f.repo}" ${ext}>${ic("github")} Source code</a>
-          </div>
+          ${links(f)}
         </article>
         <div class="grid lg:grid-cols-2 gap-5 mt-5">
           <article class="card glass" data-reveal>
@@ -225,7 +239,7 @@
           </article>
           <div class="grid gap-5">
             <article class="card glass" data-reveal>
-              <h3 class="h3 mb-4">Pages inside the app</h3>
+              <h3 class="h3 mb-4">Some of the pages inside the app</h3>
               <div class="chips">${f.pages.map((x) => `<span class="chip">${x}</span>`).join("")}</div>
             </article>
             <article class="card glass" data-reveal>
@@ -236,12 +250,43 @@
         </div>
       </div></section>
       <section class="sec"><div class="wrap">
-        <h2 class="h2 sec-title" data-reveal>Hardware builds</h2>
-        <div class="grid sm:grid-cols-2 gap-5">
+        <h2 class="h2 sec-title" data-reveal>Simulators and apps</h2>
+        <div class="grid gap-5">
+          ${(S.apps || []).map((a) => `
+            <article class="card glass anchor" id="${a.id}" data-reveal style="padding:clamp(22px,3.4vw,40px)">
+              <span class="tag">${a.kicker}</span>
+              <h3 class="display mt-2" style="font-size:clamp(1.2rem,2.4vw,1.7rem)">${a.title}</h3>
+              <p class="lead mt-4" style="color:var(--paper)">${a.summary}</p>
+              <div class="grid lg:grid-cols-[1.4fr_1fr] gap-6 mt-5">
+                <ul class="ticks">${a.points.map((p) => `<li>${p}</li>`).join("")}</ul>
+                <div><h4 class="h3 mb-3" style="font-size:1rem">Built with</h4><div class="chips">${a.tech.map((x) => `<span class="chip">${x}</span>`).join("")}</div></div>
+              </div>
+              ${links(a)}
+            </article>`).join("")}
+        </div>
+      </div></section>
+      <section class="sec"><div class="wrap">
+        <h2 class="h2 sec-title" data-reveal>Robotics and hardware</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           ${S.builds.map((b) => `<article class="card glass" data-reveal><h3 class="h3 mb-2">${b.name}</h3><p class="muted">${b.text}</p></article>`).join("")}
         </div>
       </div></section>`;
     },
+
+    research: () => head() + `
+      <section class="sec"><div class="wrap grid gap-6">
+        ${S.research.map((r) => `
+          <article class="card glass" data-reveal style="padding:clamp(22px,3.6vw,44px)">
+            <div class="flex flex-wrap items-center gap-3"><span class="badge">${r.status}</span><span class="tag">${r.area}</span></div>
+            <h2 class="h2 mt-3" style="line-height:1.25">${r.title}</h2>
+            <p class="lead mt-4" style="color:var(--paper)">${r.summary}</p>
+            <h3 class="h3 mt-6 mb-3">Findings so far</h3>
+            <ul class="ticks">${r.findings.map((p) => `<li>${p}</li>`).join("")}</ul>
+            <div class="chips mt-5">${r.tags.map((x) => `<span class="chip">${x}</span>`).join("")}</div>
+            ${links(r)}
+          </article>`).join("")}
+        <p class="muted" data-reveal>Both papers are working drafts and have not been peer reviewed. Every number comes from scripts and result files in the public repository.</p>
+      </div></section>`,
 
     about: () => head() + `
       <section class="sec"><div class="wrap grid md:grid-cols-[minmax(0,380px)_1fr] gap-8 lg:gap-14 items-start">
@@ -251,6 +296,7 @@
         <div>
           <div class="grid gap-4" data-reveal>${S.bio.map((p, i) => `<p${i ? ' class="muted"' : ""}>${p}</p>`).join("")}</div>
           <dl class="card glass details mt-8" data-reveal>${S.details.map((d) => `<div><dt>${d.k}</dt><dd>${d.v}</dd></div>`).join("")}</dl>
+          <div data-reveal>${docBtns()}</div>
           <h2 class="h2 mt-10 mb-5" data-reveal>Off the clock</h2>
           <div class="flex flex-wrap gap-3">${S.hobbies.map((h) => `<div class="glass hobby" data-reveal><span aria-hidden="true">${h.icon}</span>${h.name}</div>`).join("")}</div>
         </div>
@@ -270,6 +316,11 @@
             <span><span class="muted" style="font-size:.9rem">${r.label}</span><br><span class="to">${r.to}</span></span>
             ${ic("out", "go")}
           </a>`).join("")}
+        <div class="card glass" data-reveal>
+          <h2 class="h3">Resume and CV</h2>
+          <p class="muted mt-1">A one-page resume, and a full CV with every project, role and result.</p>
+          ${docBtns()}
+        </div>
       </div></div></section>`;
     },
 

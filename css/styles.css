@@ -227,3 +227,10 @@ body.site:not([data-page="home"]) #scene { opacity: 0.38; }
 @media (prefers-reduced-motion: reduce) {
   .card, .btn, .icon-btn { transition: none; transform: none; }
 }
+
+/* research status badge, and room under the top bar when jumping to a project */
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--carbon); background: var(--volt); }
+.badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--signal); animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) { .badge::before { animation: none; } }
+.anchor { scroll-margin-top: 110px; }

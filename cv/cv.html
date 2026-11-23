@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Talha Yaseer Abeer - Curriculum Vitae</title>
+<link rel="stylesheet" href="cv.css">
+</head>
+<body class="cv">
+<div class="page">
+
+<header>
+  <div>
+    <h1>Talha Yaseer Abeer</h1>
+    <div class="title">Curriculum Vitae</div>
+    <div class="contact" style="margin-top:3px">Electrical and Electronic Engineering, Islamic University of Technology</div>
+    <div class="contact">
+      <span>talha.iut.eee@gmail.com</span><span>abeeryaseer24.github.io</span><span>github.com/abeeryaseer24</span>
+    </div>
+    <div class="contact" style="margin-top:2px">
+      <span>linkedin.com/in/talha-yaseer-a9770b369</span><span>Dhaka, Bangladesh</span>
+    </div>
+  </div>
+  <img class="photo" src="../assets/photo.jpg" alt="Photograph of Talha Yaseer Abeer">
+</header>
+
+<section>
+  <h2>Career Objective</h2>
+  <p class="plain">Electrical and Electronic Engineering undergraduate with a strong academic record and hands-on experience in power-system simulation, applied machine learning, circuit design and robotics. Seeking internship and research opportunities in power systems, electronics and data-driven engineering, to apply what I am studying to real problems and learn from experienced engineers.</p>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="item">
+    <div class="row"><span><b>B.Sc. in Electrical and Electronic Engineering</b></span><span class="when">EEE-24, in progress</span></div>
+    <div class="sub">Islamic University of Technology (IUT), Gazipur, Bangladesh</div>
+    <ul>
+      <li>Currently in the 3rd semester (2nd year). CGPA 3.72/4.00 as of November 2026.</li>
+      <li>Courses completed with top results:
+        <ul style="list-style:circle">
+          <li><b>Basic Power System:</b> generation, transmission and distribution of electrical energy.</li>
+          <li><b>Digital Electronics:</b> logic gates and the combinational and sequential circuits built from them.</li>
+          <li><b>Linear Algebra:</b> matrices, vector spaces and eigenvalues, the mathematics behind signals and machine learning.</li>
+          <li><b>C Programming:</b> structured programming, pointers and problem solving in code.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Higher Secondary Certificate, Science</b></span><span class="when">2024</span></div>
+    <div class="sub">GPA 5.00/5.00 &nbsp;|&nbsp; 95.33% in Physics, Chemistry, Mathematics and Biology</div>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Secondary School Certificate, Science</b></span><span class="when">2022</span></div>
+    <div class="sub">GPA 5.00/5.00</div>
+  </div>
+</section>
+
+<section>
+  <h2>Research Experience (Ongoing)</h2>
+  <div class="item">
+    <div class="row"><span><b>Tested on What They Have Never Seen: Five Machine-Learning Studies for Power-System Operation on Open, Map-Derived Grids</b></span><span class="when">2026, draft</span></div>
+    <div class="sub">Independent research, sole author &nbsp;|&nbsp; github.com/abeeryaseer24/Power-Systems</div>
+    <ul>
+      <li>Built an open simulation platform of 17 real transmission grids rebuilt from OpenStreetMap, with AC power flow, protection and frequency control, and evaluated every model only on data it had never seen.</li>
+      <li><b>Demand forecasting (Great Britain):</b> a gradient-boosted model backtested over 46,478 half-hours reached 3.52% MAPE; averaged with the system operator's forecast it reached 2.64%, better than either alone.</li>
+      <li><b>Learned AC power flow:</b> caught 96–99.6% of overloads on withheld N-1 outages, 200–770&times; faster than a fast decoupled load flow.</li>
+      <li><b>RL dispatch:</b> PPO warm-started by imitating hindsight-optimal decisions tied a rolling-horizon optimiser while deciding 23&times; faster.</li>
+      <li><b>Cascade prediction:</b> a graph neural network trained on 9,929 simulated cascades outperformed gradient boosting on unseen grids (AUC 0.82 vs 0.74).</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Will There Be Load Shedding Tonight? Forecasting Evening-Peak Load Shedding in Bangladesh Against the Operator's Own Plan</b></span><span class="when">2026, draft</span></div>
+    <div class="sub">Independent research, sole author</div>
+    <ul>
+      <li>Built an 11.5-year daily series (April 2015 to November 2026, 3,607 days) by joining PGCB's hourly record with NLDC's daily reports.</li>
+      <li>Averaging gradient-boosted trees with persistence cut the error by 10% for tonight and 14% for tomorrow; on 508 test days the model's error was 220 MW against 257 MW for NLDC's published plan.</li>
+      <li>Deployed as a live predictor that updates from each new NLDC report.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Academic and Technical Projects</h2>
+  <div class="item">
+    <div class="row"><span><b>Blackstart</b> (power system and grid simulator)</span><span class="when">2026</span></div>
+    <div class="sub">power-systems-dusky.vercel.app &nbsp;|&nbsp; github.com/abeeryaseer24/Power-Systems</div>
+    <ul>
+      <li>A browser-based simulator that solves fast decoupled AC power flow (Newton-Raphson fallback) with generator limits, droop governors, AGC, five-stage UFLS, and distance and out-of-step protection on 17 real transmission networks.</li>
+      <li>Replays 24 historical blackouts from their investigation reports, from New York 1965 to Iberia 2025, which the user can watch or try to prevent.</li>
+      <li>Includes a point-kinetics reactor model with xenon, void and Doppler feedback; six power stations modelled in 3D to published dimensions; and minute-by-minute city models covering demand, a DC metro, water, telecoms, EV charging and a hospital.</li>
+      <li>Adds a neural-network collapse-risk estimator, live data from Great Britain and the US, a 15-chapter course, 104 automated tests and a full technical report.</li>
+      <li><i>Tools:</i> TypeScript, React, Vite, three.js, GSAP, KaTeX, Vitest, Web Audio API, OpenStreetMap data.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Ascent</b> (launch-vehicle ascent simulator)</span><span class="when">2026</span></div>
+    <div class="sub">rocket-simulator-two.vercel.app &nbsp;|&nbsp; github.com/abeeryaseer24/Rocket-simulator-</div>
+    <ul>
+      <li>3-DOF flight dynamics in an Earth-centred inertial frame with RK4 integration, J2 gravity, the US Standard Atmosphere 1976, Mach-dependent drag and closed-loop upper-stage guidance.</li>
+      <li>Monte Carlo dispersion analysis, payload-capacity curves and a Nelder-Mead pitch-program optimiser running in a Web Worker; optional booster recovery with boostback and landing burns.</li>
+      <li>Nine avionics models: Li-ion power, INS with a GNSS Kalman filter, RF link budget, CCSDS telemetry, MIL-STD-1553B bus, TVC servo cascade control with Bode analysis, pyrotechnics and fault tolerance.</li>
+      <li>Every physics kernel is unit-tested against published reference values; 13 interactive lessons and a technical report.</li>
+      <li><i>Tools:</i> TypeScript, React, Vite, three.js, Web Workers, Vitest.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>F1 Podium Predictor</b> (self-running machine learning web application)</span><span class="when">2026, ongoing</span></div>
+    <div class="sub">f1-podium-predictor1.streamlit.app &nbsp;|&nbsp; github.com/abeeryaseer24/f1-podium-predictor</div>
+    <ul>
+      <li>Built from scratch, from raw race data to a deployed app. Predicts the complete finishing order of each race with a Plackett-Luce ranking model fitted by maximum likelihood, replaying each race 5,000 times for win and podium probabilities.</li>
+      <li>Automated the whole cycle with GitHub Actions: data refreshes every three hours with safety checks, each prediction is locked before the race with the real grid penalties, scored afterwards, and the models retrain with champion-versus-challenger selection.</li>
+      <li>Evaluated out of sample on 111 races (2022 to 2026): 2.07 podium drivers correct per race against 1.98 for the starting-grid baseline, with published calibration and Brier scores.</li>
+      <li>Grew to more than 70 pages, including a reinforcement-learning pit strategist, a lap simulator calibrated on every race, a Monte Carlo race simulator, a lattice-Boltzmann wind tunnel, 3D race replays, a driver-vs-car rating model since 1950 and a "Beat the AI" game backed by Supabase.</li>
+      <li><i>Tools:</i> Python, pandas, NumPy, SciPy, scikit-learn, Streamlit, Altair, three.js, GitHub Actions, Supabase, Whisper, Jolpica and OpenF1 APIs.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Night Before Exam</b> (browser game)</span><span class="when">2026</span></div>
+    <div class="sub">night-before-exam-game.vercel.app &nbsp;|&nbsp; github.com/abeeryaseer24/Night-before-exam-game</div>
+    <ul>
+      <li>A one-night survival game about managing time, energy and stress before an exam, with five exam levels from SSC to university; plain JavaScript with synthesised Web Audio sound.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Line Follower Robot</b></span><span class="when">IUT</span></div>
+    <ul><li>Designed and built an autonomous robot that reads a track with sensors and steers itself along the line.</li></ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>RC Bot</b></span><span class="when">IUT</span></div>
+    <ul><li>Built a remote-controlled robot from the chassis up as part of undergraduate studies.</li></ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Personal Portfolio Website</b></span><span class="when">2026</span></div>
+    <div class="sub">abeeryaseer24.github.io</div>
+    <ul><li>Designed and published a multi-page portfolio on GitHub Pages with a three.js background, covering education, research, projects and experience.</li></ul>
+  </div>
+</section>
+
+<section>
+  <h2>Leadership and Organizing Experience</h2>
+  <div class="item">
+    <div class="row"><span><b>Vice President and Head of Content Writing</b>, Rajuk College Science Club (RCSC)</span><span class="when">Now Club Advisor</span></div>
+    <ul>
+      <li>Organized and hosted two national science fests and two intra-club competitions during my tenure.</li>
+      <li>Held and negotiated the meetings that brought in more than 20 sponsors, which funded the fests.</li>
+      <li>Headed the content writing wing, producing the club's written material for events and announcements.</li>
+      <li>Continue to serve as the club's Advisor, guiding the committee that followed.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Teaching and Mentorship</h2>
+  <div class="item">
+    <div class="row"><span><b>Private Tutor</b>, Science and Mathematics</span><span class="when">Ongoing</span></div>
+    <ul>
+      <li>Taught more than 20 HSC and SSC science students through their board examinations, with good results.</li>
+      <li>Prepared 6 university admission candidates, who went on to places at IUT, RUET and other well-known universities in Bangladesh.</li>
+      <li>Currently teaching an HSC 2027 batch and designing their chapter tests, for example a Higher Mathematics test on complex numbers.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Clubs and Activities</h2>
+  <ul>
+    <li>Member, IUT Robotics Club</li>
+    <li>Member, IUT Photography Club</li>
+    <li>Advisor and former Vice President, Rajuk College Science Club (RCSC)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Technical Skills</h2>
+  <table class="kv">
+    <tr><td>Power systems</td><td>AC power flow (Newton-Raphson, fast decoupled), DC load flow and PTDFs, N-1 contingency screening, frequency control (droop, AGC, UFLS), protection, economic dispatch, load forecasting</td></tr>
+    <tr><td>Circuit simulation</td><td>Proteus, PSIM, LTspice, PSpice, Altium Designer</td></tr>
+    <tr><td>CAD</td><td>AutoCAD, AutoCAD Electrical</td></tr>
+    <tr><td>Modelling</td><td>MATLAB and Simulink; numerical integration, Kalman filtering, control loops and Bode analysis, Monte Carlo methods</td></tr>
+    <tr><td>Programming</td><td>Python, TypeScript, JavaScript, C, HTML, CSS</td></tr>
+    <tr><td>ML and data</td><td>PyTorch, scikit-learn, XGBoost, LightGBM, graph neural networks, reinforcement learning (PPO), SciPy, pandas, NumPy, Altair</td></tr>
+    <tr><td>Web and tools</td><td>React, Vite, three.js, Streamlit, Git and GitHub, GitHub Actions, Vitest, Vercel, Supabase, VS Code, Microsoft Office</td></tr>
+    <tr><td>Hardware</td><td>Robotics (line follower, RC bot), digital electronics</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Honors and Competitions</h2>
+  <ul>
+    <li>Runner-up, Math Olympiad, Holy Cross College Science Fest, 2023</li>
+    <li>Bangladesh Math Olympiad (BDMO), Regional Round, 2023</li>
+    <li>Winner, Content Writing Competition, Rajuk College (Class 11)</li>
+    <li>Finalist, Josephite Math Mania treasure hunt</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Additional Information</h2>
+  <table class="kv">
+    <tr><td>Strengths</td><td>Negotiation, communication and organizing, built through club leadership, event management and teaching.</td></tr>
+    <tr><td>Interests</td><td>Formula 1, football, chess, photography, writing novels and watching films.</td></tr>
+    <tr><td>References</td><td>Available on request.</td></tr>
+  </table>
+</section>
+
+</div>
+</body>
+</html>

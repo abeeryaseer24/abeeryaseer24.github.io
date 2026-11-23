@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Talha Yaseer Abeer - Resume</title>
+<link rel="stylesheet" href="cv.css">
+<style>@page { margin: 9mm 13mm 8mm; }</style>
+</head>
+<body class="resume">
+<div class="page">
+
+<header>
+  <div>
+    <h1>Talha Yaseer Abeer</h1>
+    <div class="title">Electrical and Electronic Engineering Undergraduate, Islamic University of Technology</div>
+    <div class="contact">
+      <span>talha.iut.eee@gmail.com</span><span>abeeryaseer24.github.io</span><span>github.com/abeeryaseer24</span><span>linkedin.com/in/talha-yaseer-a9770b369</span><span>Dhaka, Bangladesh</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p class="plain">EEE undergraduate (CGPA 3.72/4.00) focused on power systems and applied machine learning. Built and deployed a power grid simulator, a rocket ascent simulator and a self-running F1 prediction app; conducting independent research on ML for grid operation. Seeking internships and research roles in power systems and electronics.</p>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="item">
+    <div class="row"><span><b>B.Sc. in Electrical and Electronic Engineering</b>, Islamic University of Technology (IUT)</span><span class="when">EEE-24, in progress</span></div>
+    <ul>
+      <li>CGPA 3.72/4.00 (Nov 2026, 3rd semester); top results in Basic Power System, Digital Electronics, Linear Algebra, C.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>HSC (Science)</b>, GPA 5.00/5.00, 95.33% &nbsp;&middot;&nbsp; <b>SSC (Science)</b>, GPA 5.00/5.00</span><span class="when">2024, 2022</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Research (Ongoing)</h2>
+  <div class="item">
+    <div class="row"><span><b>Machine Learning for Power-System Operation on Open, Map-Derived Grids</b></span><span class="when">2026, draft</span></div>
+    <ul>
+      <li>Built an open platform of 17 real transmission grids from OpenStreetMap and ran five independent studies, each tested only on grids, outages or days the model never saw.</li>
+      <li>A learned AC power flow caught 96–99.6% of N-1 overloads at 200–770&times; the speed of a fast decoupled load flow; a GNN beat gradient boosting at cascade prediction on unseen grids (AUC 0.82 vs 0.74).</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Forecasting Evening-Peak Load Shedding in Bangladesh Against the Operator's Plan</b></span><span class="when">2026, draft</span></div>
+    <ul>
+      <li>Built an 11.5-year load-shedding series from PGCB and NLDC records; error of 220 MW vs 257 MW for NLDC's own plan on 508 test days.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <div class="item">
+    <div class="row"><span><b>Blackstart</b>, power system and grid simulator (TypeScript, React, three.js)</span><span class="when">2026</span></div>
+    <div class="sub">power-systems-dusky.vercel.app &nbsp;|&nbsp; github.com/abeeryaseer24/Power-Systems</div>
+    <ul>
+      <li>Implemented AC power flow (fast decoupled, Newton-Raphson fallback), droop and AGC, UFLS and distance protection on 17 real networks; replays 24 historical blackouts.</li>
+      <li>Added a point-kinetics reactor model, 3D power stations and city, metro and hospital models; 104 automated tests and a technical report.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Ascent</b>, rocket ascent simulator (TypeScript, React, three.js)</span><span class="when">2026</span></div>
+    <div class="sub">rocket-simulator-two.vercel.app &nbsp;|&nbsp; github.com/abeeryaseer24/Rocket-simulator-</div>
+    <ul>
+      <li>Built 3-DOF RK4 flight dynamics with J2 gravity, US76 atmosphere and closed-loop guidance, plus Monte Carlo dispersion and trajectory optimisation.</li>
+      <li>Modelled nine avionics subsystems (GNSS/INS Kalman filter, RF link budget, MIL-STD-1553B, TVC servo control), unit-tested against published data.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>F1 Podium Predictor</b>, self-running machine learning web app (Python, SciPy, Streamlit)</span><span class="when">2026, ongoing</span></div>
+    <div class="sub">f1-podium-predictor1.streamlit.app &nbsp;|&nbsp; github.com/abeeryaseer24/f1-podium-predictor</div>
+    <ul>
+      <li>Predicts each race's full finishing order with a Plackett-Luce model; a GitHub Actions pipeline locks predictions before the race, scores them and retrains with no manual step.</li>
+      <li>Out of sample on 111 races: 2.07 podium drivers correct per race vs 1.98 for the starting grid; added an RL pit strategist, lap simulator and 3D replays.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Robotics</b>: built a sensor-guided autonomous line follower and an RC bot from the chassis up</span><span class="when">IUT</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Leadership and Experience</h2>
+  <div class="item">
+    <div class="row"><span><b>Vice President and Head of Content Writing</b>, Rajuk College Science Club (RCSC)</span><span class="when">Now Club Advisor</span></div>
+    <ul>
+      <li>Organized and hosted two national science fests and two intra-club competitions; negotiated deals with 20+ sponsors.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="row"><span><b>Private Tutor</b>, Science and Mathematics</span><span class="when">Ongoing</span></div>
+    <ul>
+      <li>Taught 20+ SSC/HSC students and 6 admission candidates now at IUT, RUET and others; currently teaching an HSC 2027 batch.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Technical Skills</h2>
+  <table class="kv">
+    <tr><td>Power and circuits</td><td>Power flow, contingency analysis; MATLAB/Simulink, Proteus, PSIM, LTspice, PSpice, Altium, AutoCAD Electrical</td></tr>
+    <tr><td>Programming</td><td>Python, TypeScript, JavaScript, C; React, three.js, Streamlit, Git, GitHub Actions, Vitest</td></tr>
+    <tr><td>ML and data</td><td>PyTorch, scikit-learn, XGBoost, LightGBM, SciPy, pandas, NumPy</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Honors</h2>
+  <p class="plain">Runner-up, Math Olympiad, Holy Cross College Science Fest (2023) &nbsp;&middot;&nbsp; Regional Round, Bangladesh Math Olympiad (2023) &nbsp;&middot;&nbsp; Winner, Content Writing Competition, Rajuk College &nbsp;&middot;&nbsp; Finalist, Josephite Math Mania</p>
+</section>
+
+</div>
+</body>
+</html>
